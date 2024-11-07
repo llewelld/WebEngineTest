@@ -1,3 +1,7 @@
+/* vim: set et ts=4 sts=4 sw=4: */
+/* SPDX-License-Identifier: BSD-2-Clause */
+/* Copyright © 2024 David Llewellyn-Jones */
+
 function collect_node_stats(global_context, local_context, node) {
     // Update the context
     local_context.depth += 1;
@@ -28,14 +32,14 @@ function collect_node_stats(global_context, local_context, node) {
 }
 
 // Data available to all nodes
-global_context = {
+let global_context = {
     "nodes": 0,
     "maxdepth": 0,
     "maxbreadth": 0
 }
 
 // Data that's local to the node and shared with the parent
-local_context = {
+let local_context = {
     "depth": 0,
     "breadth": [1]
 }

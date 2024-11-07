@@ -1,3 +1,7 @@
+/* vim: set et ts=4 sts=4 sw=4: */
+/* SPDX-License-Identifier: BSD-2-Clause */
+/* Copyright © 2024 David Llewellyn-Jones */
+
 import QtQuick
 
 Row {
@@ -13,7 +17,7 @@ Row {
 
     Text {
         id: nodes
-        text: "Node count: " + infobar.dominfo.nodes
+        text: qsTr("Node count: %1").arg(infobar.dominfo.nodes)
         height: 28
         width: 200
         verticalAlignment: Text.AlignVCenter
@@ -23,7 +27,7 @@ Row {
     Text {
         id: depth
         height: 28
-        text: "DOM height: " + infobar.dominfo.maxdepth
+        text: qsTr("DOM height: %1").arg(infobar.dominfo.maxdepth)
         width: 200
         verticalAlignment: Text.AlignVCenter
         leftPadding: 20
@@ -31,7 +35,7 @@ Row {
 
     Text {
         id: breadth
-        text: "DOM width: " + infobar.dominfo.maxbreadth
+        text: qsTr("DOM width: %1").arg(infobar.dominfo.maxbreadth)
         height: 28
         width: 200
         verticalAlignment: Text.AlignVCenter

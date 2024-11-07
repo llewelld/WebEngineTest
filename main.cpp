@@ -1,3 +1,7 @@
+/* vim: set et ts=4 sts=4 sw=4: */
+/* SPDX-License-Identifier: BSD-2-Clause */
+/* Copyright © 2024 David Llewellyn-Jones */
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngineQuick/QtWebEngineQuick>
@@ -20,7 +24,6 @@ int main(int argc, char *argv[])
     QString domwalk;
     QFile file(":/js/DomWalk.js");
     if (file.open(QIODevice::ReadOnly)) {
-        QTextStream in(&file);
         domwalk = file.readAll();
         file.close();
     }
