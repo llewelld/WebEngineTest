@@ -5,12 +5,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngineQuick/QtWebEngineQuick>
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
     QtWebEngineQuick::initialize();
 
     QGuiApplication app(argc, argv);
+
+    QIcon::setThemeName("webenginetest");
 
     QQmlApplicationEngine engine;
     QObject::connect(

@@ -18,9 +18,14 @@ qt_add_qml_module(appWebEngineTest
     VERSION 1.0
     QML_FILES
         Main.qml
-        widgets/ToolButton.qml
-        QML_FILES widgets/ToolBar.qml
-        QML_FILES widgets/InfoBar.qml
+        widgets/NavButton.qml
+        widgets/InfoLabel.qml
+        widgets/NavBar.qml
+        widgets/InfoBar.qml
+    RESOURCES
+        "icons/back.png"
+        "icons/forward.png"
+        "icons/execute.png"
 )
 
 qt_add_resources(appWebEngineTest "js"

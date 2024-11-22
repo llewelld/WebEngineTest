@@ -9,6 +9,6 @@ Button {
     icon.width: 32
     icon.color: enabled ? "transparent" : "gray"
 
-    height: 50
-    width: 100
+    height: parent.height
+    width: height
 }

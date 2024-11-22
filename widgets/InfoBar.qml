@@ -5,8 +5,7 @@
 import QtQuick
 
 Row {
-    id: infobar
-    height: 28
+    height: 32
     anchors.horizontalCenter: parent.horizontalCenter
 
     property var dominfo: {
@@ -15,30 +14,15 @@ Row {
         "maxbreadth": 0
     }
 
-    Text {
-        id: nodes
+    InfoLabel {
         text: qsTr("Node count: %1").arg(infobar.dominfo.nodes)
-        height: 28
-        width: 200
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: 20
     }
 
-    Text {
-        id: depth
-        height: 28
+    InfoLabel {
         text: qsTr("DOM height: %1").arg(infobar.dominfo.maxdepth)
-        width: 200
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: 20
     }
 
-    Text {
-        id: breadth
+    InfoLabel {
         text: qsTr("DOM width: %1").arg(infobar.dominfo.maxbreadth)
-        height: 28
-        width: 200
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: 20
     }
 }
