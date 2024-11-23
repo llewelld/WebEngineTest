@@ -13,6 +13,10 @@ qt_add_executable(appWebEngineTest
     README.md
 )
 
+qt_policy(
+    SET QTP0004 NEW
+)
+
 qt_add_qml_module(appWebEngineTest
     URI WebEngineTest
     VERSION 1.0
