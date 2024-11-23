@@ -28,15 +28,16 @@ Row {
         onClicked: webview.getInfo()
     }
 
+    Item {
+        width: 8
+        height: parent.height
+    }
+
     TextField {
         id: urltext
-        height: 32
         y: (parent.height - height) / 2
         text: webview.url
-        width: parent.width - (parent.height * 3) - 8
-        verticalAlignment: TextEdit.AlignVCenter
-        leftPadding: 16
-        leftInset: 8
+        width: parent.width - (parent.height * 3.6) - 16
         color: palette.windowText
         onAccepted: webview.url = text
     }

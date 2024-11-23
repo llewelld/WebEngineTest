@@ -10,5 +10,5 @@ Button {
     icon.color: enabled ? "transparent" : "gray"
 
     height: parent.height
-    width: height
+    width: height * 1.2
 }
