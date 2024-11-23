@@ -23,7 +23,7 @@ qt_add_qml_module(appWebEngineTest
     QML_FILES
         Main.qml
         widgets/NavButton.qml
-        widgets/InfoLabel.qml
+        widgets/InfoText.qml
         widgets/NavBar.qml
         widgets/InfoBar.qml
     RESOURCES

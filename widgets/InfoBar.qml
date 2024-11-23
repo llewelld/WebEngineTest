@@ -14,15 +14,15 @@ Row {
         "maxbreadth": 0
     }
 
-    InfoLabel {
-        text: qsTr("Node count: %1").arg(infobar.dominfo.nodes)
+    InfoText {
+        text: qsTr("Node count: %1").arg(dominfo.nodes)
     }
 
-    InfoLabel {
-        text: qsTr("DOM height: %1").arg(infobar.dominfo.maxdepth)
+    InfoText {
+        text: qsTr("DOM height: %1").arg(dominfo.maxdepth)
     }
 
-    InfoLabel {
-        text: qsTr("DOM width: %1").arg(infobar.dominfo.maxbreadth)
+    InfoText {
+        text: qsTr("DOM width: %1").arg(dominfo.maxbreadth)
     }
 }
