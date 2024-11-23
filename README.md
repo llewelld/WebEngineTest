@@ -2,7 +2,15 @@
 
 Qt WebEngine app for "Anatomy of a Browser - Embedded Mobile Lizards " talk
 
-## Build
+## Clone the repository
+
+Whether you want to build with Qt Creator or at the command line, you'll first need to clone the repository working tree.
+
+```
+git clone https://github.com/llewelld/WebEngineTest.git
+```
+
+## Build using Qt Creator
 
 These instructions are for building the example app on Linux using Qt Creator.
 
@@ -25,7 +33,7 @@ Build:
     2. Select "Configure Project".
 4. Build and run the project by selecting "Build" > "Run" from the main menu.
 
-## Prerequisites
+## Build at the command line
 
 For pre-requisites you will need Qt6 installed, including the Qt WebEngine extension.
 Depending on your operating system and distribution you may be able to get these through your package manager.
@@ -48,13 +56,23 @@ All of the following instructions assume this environment variable remains set, 
 You may need to set it again (to the same location) in case you open a new shell.
 
 Now you need to download and run the online installer using the provided flags.
-The process differs depending on what system you're using. Here we provide separate instructions for Linux and macOS.
+The process differs depending on what system you're using.
 
-In both cases installation can take quite some time (due to the large download sizes).
+### Different instructions for Linux and macOS
 
-### Installing Qt dependencies on Linux
+From this point I tried really hard to write instructions that work for both Linux and macOS.
+But not only do things get installed in different places, the structure of the Qt installation differs between the two.
+Even the approach to running the final executable differs.
+
+This saddens me greatly, but I've concluded that the simplest solution is to have different instructions for each platform.
+Both platforms have equivalent steps, but the details are different enough that working around them using environment variables turned out to be Byzantine.
+
+So please refer to the specific instructions for your platforms.
+
+### Install Qt dependencies on Linux
 
 The real action happens when you execute `qt-online-installer-linux-*.run`.
+Installation at that point can take quite some time (30 minutes) due to the large download sizes.
 
 ```
 curl -O https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-online-installer-linux-x64-4.8.1.run
@@ -64,12 +82,35 @@ chmod 744 qt-online-installer-linux-*.run
     extensions.qtwebengine qt.qt6.680 qt.qt6.680.addons qt.tools.cmake \
     qt.tools.maintenance qt.tools.ninja qt.tools.qtcreator \
     qt.tools.qtcreator_gui qtcreator
-CMAKE_PATH=${QT_INSTALL_DIR}/Tools/CMake/bin/
 ```
 
-### Installing Qt dependencies on macOS
+### Build on Linux
+
+To build, move inside the `build` directory and execute `cmake`.
+We have to point various environment variables at places in the Qt installation directory so that `cmake` can find them.
+We also use the `cmake` that was installed with Qt, but you can use your default `cmake` if you already have it installed.
+
+```
+mkdir WebEngineTest/build
+pushd WebEngineTest/build
+Qt6_DIR=${QT_INSTALL_DIR}/6.8.0/gcc_64//lib/cmake/Qt6/ \
+    Qt6QmlTools_DIR=${QT_INSTALL_DIR}/6.8.0/gcc_64/lib/cmake/Qt6QmlTools/ \
+    ${QT_INSTALL_DIR}/Tools/CMake/bin/cmake ..
+make
+```
+
+### Execute on Linux
+
+Once the build completes successfully, you can run the resulting binary from inside the `build` directory.
+
+```
+./appWebEngineTest
+```
+
+### Install Qt dependencies on macOS
 
 The real action happens when you execute `qt-online-installer-macOS-*`.
+Installation at that point can take quite some time (35 minutes) due to the large download sizes.
 
 ```
 curl -O https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-online-installer-macOS-x64-4.8.1.dmg
@@ -80,61 +121,45 @@ hdiutil attach qt-online-installer-macOS-*.dmg
     qt.tools.maintenance qt.tools.ninja qt.tools.qtcreator \
     qt.tools.qtcreator_gui qtcreator
 hdiutil detach /Volumes/qt-online-installer-macOS-*
-CMAKE_PATH=${QT_INSTALL_DIR}/Tools/CMake/CMake.app/Contents/bin/
 ```
 
-## Build the software
+### Build on macOS
 
-The following steps assume you've installed Qt6 and the Qt WebEngine extension. See the prerequisites section in case you've not already done this.
-
-Download the repository working tree.
-
-```
-git clone https://github.com/llewelld/WebEngineTest.git
-```
+To build, move inside the `build` directory and execute `cmake`.
+We have to point various environment variables at places in the Qt installation directory so that `cmake` can find them.
+We also use the `cmake` that was installed with Qt, but you can use your default `cmake` if you already have it installed.
 
 ```
-pushd WebEngineTest
-mkdir build
-pushd build
-```
-
-Create make files for building:
-
-```
-Qt6_DIR=${QT_INSTALL_DIR}/6.8.0/*/lib/cmake/Qt6/ Qt6QmlTools_DIR=${QT_INSTALL_DIR}/6.8.0/*/lib/cmake/Qt6QmlTools/ ${CMAKE_PATH}/cmake ..
-```
-
-Build the executable:
-
-```
+mkdir WebEngineTest/build
+pushd WebEngineTest/build
+Qt6_DIR=${QT_INSTALL_DIR}/6.8.0/macos//lib/cmake/Qt6/ \
+    Qt6QmlTools_DIR=${QT_INSTALL_DIR}/6.8.0/macos/lib/cmake/Qt6QmlTools/ \
+    ${QT_INSTALL_DIR}/Tools/CMake/CMake.app/Contents/bin/cmake ..
 make
 ```
 
-Finally, you can run the executable from the same build directory for Linux:
+### Execute on macOS
+
+Once the build completes successfully, you can run the resulting binary from inside the `build` directory.
 
 ```
-./appWebEngineTest
-```
-
-Or on macOS:
-``
 open ./appWebEngineTest.app
-``
+```
 
 ## Clean
 
-If you want to clean up after your build, use the following steps.
-These commands *delete files* so please handle them with care.
+Once you're done you can clean up the build artefacts (including the built binary) in the standard way by calling:
+```
+make clean
+```
 
+You can go further and remove the Qt installation directory too if you don't want it further.
+This will *delete files* so execute these commands with care.
+Conveniently, after running these commands and deleting the cloned repository, your machine should be left in the same state as before you started.
 ```
 popd
-rm -rf build-test
-popd
-rm -rf Qt6
+rm -rf WebEngineTest/build/
+rm -rf Qt
 rm qt-online-installer-*
 ```
-
-
-
 
