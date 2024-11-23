@@ -7,7 +7,6 @@ import QtWebEngine
 import "widgets"
 
 Window {
-    id: window
     width: 640
     height: 480
     visible: true
@@ -15,7 +14,6 @@ Window {
     color: palette.base
 
     Column {
-        id: column
         anchors.fill: parent
 
         NavBar {
